@@ -30,7 +30,7 @@ class UserAPIController extends AppBaseController
     {
         if(auth("sanctum")->check()){
 
-            return $this->sendResponse(auth("sanctum")->user(), __('app.data'));
+            return $this->sendResponse(auth("sanctum")->user(), __('app.success.retrieved'));
         }
 
         return $this->sendError(__('app.error.noFound'));
@@ -44,13 +44,13 @@ class UserAPIController extends AppBaseController
     {
         $input = $request->all();
 
-        $user = $request->user();
+        $authUser = $request->user();
 
-        if (!$user) {
+        if (!$authUser) {
             return $this->sendError(__('auth.error'), 401);
         }
         /** @var User $user */
-        $user = $this->userRepository->find($user->id);
+        $user = $this->userRepository->find($authUser->id);
 
         if (empty($user)) {
             return $this->sendError(__('app.error.noFound'));
@@ -58,6 +58,6 @@ class UserAPIController extends AppBaseController
 
         $user = $this->userRepository->update($input, $user->id);
 
-        return $this->sendResponse($user->toArray(), __('app.updated'));
+        return $this->sendResponse($user->toArray(), __('app.success.updated'));
     }
 }

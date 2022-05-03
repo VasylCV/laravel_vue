@@ -23,7 +23,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('user/update', ['as' => 'update', 'uses' => '\App\Http\Controllers\API\UserAPIController@update']);
 
     Route::post('logout', ['as' => 'logout', 'uses' => '\App\Http\Controllers\API\AuthAPIController@logout']);
+
+    Route::resource('articles', App\Http\Controllers\API\ArticleAPIController::class);
 });
+
+
+
 
 
 

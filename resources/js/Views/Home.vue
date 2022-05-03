@@ -55,7 +55,7 @@ export default {
     },
     computed : {
         user() {
-            return this.$store.getters.user
+            return this.$store.getters.user;
         },
         schema() {
             return yup.object({
@@ -75,8 +75,8 @@ export default {
         },
     },
     mounted() {
-        this.name = this.user.name
-        this.email = this.user.email
+        this.name = this.user.name;
+        this.email = this.user.email;
     },
 }
 </script>

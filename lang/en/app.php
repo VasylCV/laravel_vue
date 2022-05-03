@@ -2,11 +2,13 @@
 
 return [
     'error' => [
-        'save' => 'Error with save data',
+        'save' => 'Data saving error',
         'noFound' => 'Data not found',
-
     ],
-    'data' => 'Data execution',
-    'updated' => 'Data updated successfully',
+    'success' => [
+        'retrieved' => 'Data retrieved successfully',
+        'updated' => 'Data updated successfully',
+        'deleted' => 'Data updated successfully'
+    ],
 
 ];

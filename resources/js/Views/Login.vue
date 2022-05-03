@@ -72,7 +72,7 @@ export default {
             try {
                 await this.$store.dispatch('login' , {'email' : this.email , 'password' : this.password});
 
-                this.$router.push({name: 'home'})
+                this.$router.push({name: 'home'});
             }
             catch (e){
                 if (e.data.success === false) {
