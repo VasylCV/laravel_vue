@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateArticleAPIRequest;
-use App\Http\Requests\API\UpdateArticleAPIRequest;
+use App\Http\Requests\API\Article\CreateArticleAPIRequest;
+use App\Http\Requests\API\Article\UpdateArticleAPIRequest;
 use App\Models\Article;
 use App\Repositories\ArticleRepository;
 use Illuminate\Http\Request;

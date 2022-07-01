@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\API;
+namespace App\Http\Requests\API\Auth;
 
-use App\Models\Article;
 use InfyOm\Generator\Request\APIRequest;
 
-class UpdateArticleAPIRequest extends APIRequest
+class VerificationResendAPIRequest extends APIRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +23,8 @@ class UpdateArticleAPIRequest extends APIRequest
      */
     public function rules()
     {
-        return Article::$rules;
+        return [
+            'id' => 'required|numeric',
+        ];
     }
 }

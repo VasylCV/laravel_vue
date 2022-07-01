@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\API;
+namespace App\Http\Requests\API\Article;
 
 use App\Models\Article;
 use InfyOm\Generator\Request\APIRequest;
 
-class CreateArticleAPIRequest extends APIRequest
+class UpdateArticleAPIRequest extends APIRequest
 {
     /**
      * Determine if the user is authorized to make this request.

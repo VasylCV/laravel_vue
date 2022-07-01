@@ -33,6 +33,8 @@
 
                                 <button class="btn btn-outline-light btn-lg px-5 mt-4 mb-4" type="submit">Login</button>
                             </Form>
+
+                            <router-link :to="{name : 'forgot-password'}" class="pb-5 text-white">Forgot your password? </router-link>
                         </div>
                     </div>
                 </div>

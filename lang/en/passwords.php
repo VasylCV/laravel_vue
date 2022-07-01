@@ -18,5 +18,13 @@ return [
     'throttled' => 'Please wait before retrying.',
     'token' => 'This password reset token is invalid.',
     'user' => "We can't find a user with that email address.",
+    'title' => 'Reset Password',
+    'email' => [
+        'title' => 'Reset Password',
+        'subject' => 'Reset Password Notification',
+        'text' => 'You are receiving this email because we received a password reset request for your account.',
+        'expire_text' => 'This password reset link will expire in :count minutes.',
+        'text_warning' => 'If you did not request a password reset, no further action is required.',
+    ],
 
 ];

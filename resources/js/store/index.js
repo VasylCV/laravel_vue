@@ -61,6 +61,29 @@ export default createStore({
                 throw (e);
             }
         },
+        async verifyResend({dispatch} , payload){
+            await axios.post('/api/verify-resend' , payload).then((res) => {
+                Swal.fire({
+                    title: 'Success',
+                    text:  res.data.message,
+                    icon: 'success',
+                });
+            }).catch((err) => {
+                throw(err.response);
+            })
+        },
+        async verifyEmail({dispatch} , payload){
+            await axios.post('/api/verify-email/' + payload.id + '/' + payload.hash)
+                .then((res) => {
+                    Swal.fire({
+                        title: 'Success',
+                        text:  res.data.message,
+                        icon: 'success',
+                    });
+                }).catch((err) => {
+                    throw(err.response);
+                })
+        },
         async logout({ commit }) {
             await axios.post('/api/logout').then((res) => {
                 commit('setUser', null);
@@ -72,7 +95,7 @@ export default createStore({
             axios.defaults.headers.common['Authorization'] = `Bearer `+ localStorage.getItem('token');
             await axios.get('/api/user').then((res) => {
                 commit('setUser', res.data.data);
-            })
+            }).catch((err) => {})
         },
         async updateUser({commit},payload) {
             await axios.patch('/api/user/update', payload).then((res) => {
