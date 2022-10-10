@@ -7,35 +7,26 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
- * Class Article
+ * Class Role
  * @package App\Models
- * @version April 19, 2022, 1:13 pm UTC
+ * @version August 25, 2022, 7:31 am UTC
  *
  */
-class Article extends Model
+class Role extends Model
 {
     use SoftDeletes;
 
     use HasFactory;
 
-    public $table = 'articles';
+    const User = 1;
+    const Admin = 2;
+
+    public $table = 'roles';
 
     protected $dates = ['deleted_at'];
 
     public $fillable = [
-        'title',
-        'text',
-        'author_id'
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'updated_at',
-        'deleted_at',
+        'title'
     ];
 
     /**
@@ -53,11 +44,16 @@ class Article extends Model
      * @var array
      */
     public static $rules = [
-        'title' => 'required|string|min:8 '
+        'title' => 'required|string|min:3',
     ];
 
-    public function author()
+    public static function getRoles()
     {
-        return $this->hasOne(User::class, 'id', 'author_id');
+        return self::get()->pluck('title','id')->toArray();
+    }
+
+    public static function getRoleTitle($id)
+    {
+        return self::getRoles()[$id];
     }
 }

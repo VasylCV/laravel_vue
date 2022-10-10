@@ -33,11 +33,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', ['as' => 'logout', 'uses' => '\App\Http\Controllers\API\Auth\AuthAPIController@logout']);
 
     Route::resource('articles', App\Http\Controllers\API\ArticleAPIController::class);
+
+    Route::middleware('user-access:admin')->group(function () {
+        Route::resource('roles', App\Http\Controllers\API\RoleAPIController::class);
+    });
 });
-
-
-
-
-
-
-

@@ -1,16 +1,17 @@
 const Welcome = () => import('../Views/Welcome.vue');
-const Registration = () => import('../Views/Registration.vue');
-const Login = () => import('../Views/Login.vue');
+const Registration = () => import('../Views/Auth/Registration.vue');
+const Login = () => import('../Views/Auth/Login.vue');
 const Home = () => import('../Views/Home.vue');
 const Articles = () => import('../Views/Articles/List.vue');
 const AddArticle = () => import('../Views/Articles/Add.vue');
 const EditArticle = () => import('../Views/Articles/Edit.vue');
-const ForgotPassword = () => import('../Views/ForgotPassword.vue');
-const VerifyEmail = () => import('../Views/VerifyEmail.vue');
-const ResetPassword = () => import('../Views/ResetPassword.vue');
+const ForgotPassword = () => import('../Views/Auth/ForgotPassword.vue');
+const VerifyEmail = () => import('../Views/Auth/VerifyEmail.vue');
+const ResetPassword = () => import('../Views/Auth/ResetPassword.vue');
+const Roles = () => import('../Views/Roles/List.vue');
+const Constants = () => import('./routerConstants.js');
 
 export default [
-
     {
         path: '/',
         component: Welcome,
@@ -21,7 +22,7 @@ export default [
         component: Registration,
         name: 'registration',
         meta : {
-            guard : 'guest'
+            guard : Constants.GUARD_GUEST
         }
     },
     {
@@ -29,7 +30,7 @@ export default [
         component: Login,
         name: 'login',
         meta : {
-            guard : 'guest'
+            guard : Constants.GUARD_GUEST
         }
     },
     {
@@ -37,7 +38,7 @@ export default [
         component: ForgotPassword,
         name: 'forgot-password',
         meta : {
-            guard : 'guest'
+            guard : Constants.GUARD_GUEST
         }
     },
     {
@@ -49,7 +50,7 @@ export default [
         component: ResetPassword,
         name: 'reset-password',
         meta : {
-            guard : 'guest'
+            guard : Constants.GUARD_GUEST
         }
     },
     {
@@ -57,7 +58,7 @@ export default [
         component: Home,
         name: 'home',
         meta: {
-            guard: 'auth'
+            guard: Constants.GUARD_AUTH
         }
     },
     {
@@ -74,7 +75,7 @@ export default [
         component: Articles,
         name: 'articles',
         meta: {
-            guard: 'auth'
+            guard: Constants.GUARD_AUTH
         }
     },
     {
@@ -82,7 +83,7 @@ export default [
         component: AddArticle,
         name: 'addArticle',
         meta: {
-            guard: 'auth'
+            guard: Constants.GUARD_AUTH
         }
     },
     {
@@ -90,7 +91,16 @@ export default [
         component: EditArticle,
         name: 'editArticle',
         meta: {
-            guard: 'auth'
+            guard: Constants.GUARD_AUTH
+        }
+    },
+    {
+        path: '/roles',
+        component: Roles,
+        name: 'roles',
+        meta: {
+            guard: Constants.GUARD_AUTH,
+            requiredRoles: [Constants.ROLE_ADMIN]
         }
     },
     {

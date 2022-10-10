@@ -8,6 +8,8 @@ export default createStore({
         user: null,
         articles: [],
         article: [],
+        roles: [],
+        role: [],
     },
     getters: {
         user(state) {
@@ -23,6 +25,12 @@ export default createStore({
         articleById: (state) => (id) => {
             return state.articles.find(articles => articles.id === id);
         },
+        roles(state) {
+            return state.roles;
+        },
+        roleById: (state) => (id) => {
+            return state.roles.find(roles => roles.id === id);
+        },
     },
     mutations: {
         setUser(state, payload) {
@@ -34,11 +42,17 @@ export default createStore({
         setArticle(state,payload){
             state.articles.push(payload);
         },
+        setRoles(state,payload){
+            state.roles = payload;
+        },
+        setRole(state,payload){
+            state.roles.push(payload);
+        },
     },
     actions: {
         async login({ dispatch }, payload) {
             try {
-                await axios.get('/sanctum/csrf-cookie');
+                await axios.get('/sanctum/csrf-cookie');//todo check if need
 
                 await axios.post('/api/login', payload).then((res) => {
                     localStorage.setItem('token', res.data.data.access_token);
@@ -148,6 +162,54 @@ export default createStore({
         async deleteArticle({dispatch},payload) {
             await axios.delete('/api/articles/'+payload.id).then((res) => {
                 dispatch("getAllArticles");
+                Swal.fire({
+                    title: 'Success',
+                    text:  res.data.message,
+                    icon: 'success',
+                });
+            }).catch((err) => {
+                throw err.response;
+            })
+        },
+        async getAllRoles({commit}){
+            await axios.get('/api/roles')
+                .then((response)=>{
+                    commit('setRoles',response.data.data);
+                }).catch((err) => {
+                    throw(err.response);
+                })
+        },
+        async createRole({ dispatch }, payload) {
+            try {
+                await axios.post('/api/roles' , payload).then((res) => {
+                    dispatch("getAllRoles");
+                    Swal.fire({
+                        title: 'Success',
+                        text:  res.data.message,
+                        icon: 'success',
+                    });
+                }).catch((err) => {
+                    throw(err.response);
+                })
+            } catch (e) {
+                throw (e);
+            }
+        },
+        async updateRole({dispatch}, payload) {
+            await axios.patch('/api/roles/'+payload.id, payload).then((res) => {
+                dispatch("getAllRoles");
+                Swal.fire({
+                    title: 'Success',
+                    text:  res.data.message,
+                    icon: 'success',
+                });
+            }).catch((err) => {
+                throw err.response;
+            })
+        },
+        async deleteRole({dispatch},payload) {
+            await axios.delete('/api/roles/'+payload.id).then((res) => {
+                dispatch("getAllRoles");
                 Swal.fire({
                     title: 'Success',
                     text:  res.data.message,

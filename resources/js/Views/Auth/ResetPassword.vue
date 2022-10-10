@@ -47,7 +47,7 @@
 import { Field, Form, ErrorMessage} from 'vee-validate';
 import * as yup from 'yup';
 import Swal from "sweetalert2";
-import router from "../router";
+import router from "../../router";
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 

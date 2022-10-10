@@ -51,7 +51,7 @@ class ArticleRepository extends BaseRepository
     {
         $query = $this->allQuery($search, $skip, $limit);
 
-        $query->with('author:id,name');
+        $query->with('author:id,name,role_id');
 
         return $query->get($columns);
     }

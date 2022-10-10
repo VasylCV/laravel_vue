@@ -27,7 +27,8 @@ class User extends Authenticatable  implements MustVerifyEmail
     public $fillable = [
             'name',
             'email',
-            'password'
+            'password',
+            'role_id'
     ];
 
     /**
@@ -59,6 +60,16 @@ class User extends Authenticatable  implements MustVerifyEmail
         'remember_token',
     ];
 
+    protected $visible = [
+        'id',
+        'name',
+        'email',
+        'email_verified_at',
+        'role'
+    ];
+
+    protected $appends = [ 'role' ];
+
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
@@ -66,5 +77,29 @@ class User extends Authenticatable  implements MustVerifyEmail
     public function sendEmailVerificationNotification()
     {
         $this->notify(new VerifyEmailNotification());
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function role()
+    {
+        return $this->hasOne(Role::class);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return $this->role_id == Role::Admin;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getRoleAttribute()
+    {
+        return Role::getRoleTitle($this->role_id);
     }
 }

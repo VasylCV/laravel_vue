@@ -19,4 +19,5 @@ return [
     'login' => 'You have successfully logged in.',
     'error' => 'Authentication error.',
     'logout' => 'You have successfully log out.',
+    'permission' => 'You do not have permission to access for this page.',
 ];

@@ -6,8 +6,12 @@
             </router-link>
 
             <div v-if="user" class="position-relative mx-5">
-                <router-link class="link d-inline-flex items-center text-white text-decoration-none mx-3" :to="{ name: 'articles' }">
+                <router-link class="link d-inline-flex items-center text-white text-decoration-none me-3" :to="{ name: 'articles' }">
                     ARTICLES
+                </router-link>
+
+                <router-link v-if="user.role === 'admin'" class="link d-inline-flex items-center text-white text-decoration-none me-3" :to="{ name: 'roles' }">
+                    ROLES
                 </router-link>
 
                 <div class="link d-inline-flex items-center" ref="dropMenu">
