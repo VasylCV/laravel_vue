@@ -9,7 +9,7 @@ const ForgotPassword = () => import('../Views/Auth/ForgotPassword.vue');
 const VerifyEmail = () => import('../Views/Auth/VerifyEmail.vue');
 const ResetPassword = () => import('../Views/Auth/ResetPassword.vue');
 const Roles = () => import('../Views/Roles/List.vue');
-const Constants = () => import('./routerConstants.js');
+import {CONSTANTS} from '../constants'
 
 export default [
     {
@@ -22,7 +22,7 @@ export default [
         component: Registration,
         name: 'registration',
         meta : {
-            guard : Constants.GUARD_GUEST
+            guard : CONSTANTS.ROUTE.GUARD_GUEST
         }
     },
     {
@@ -30,7 +30,7 @@ export default [
         component: Login,
         name: 'login',
         meta : {
-            guard : Constants.GUARD_GUEST
+            guard : CONSTANTS.ROUTE.GUARD_GUEST
         }
     },
     {
@@ -38,7 +38,7 @@ export default [
         component: ForgotPassword,
         name: 'forgot-password',
         meta : {
-            guard : Constants.GUARD_GUEST
+            guard : CONSTANTS.ROUTE.GUARD_GUEST
         }
     },
     {
@@ -50,7 +50,7 @@ export default [
         component: ResetPassword,
         name: 'reset-password',
         meta : {
-            guard : Constants.GUARD_GUEST
+            guard : CONSTANTS.ROUTE.GUARD_GUEST
         }
     },
     {
@@ -58,7 +58,7 @@ export default [
         component: Home,
         name: 'home',
         meta: {
-            guard: Constants.GUARD_AUTH
+            guard: CONSTANTS.ROUTE.GUARD_AUTH
         }
     },
     {
@@ -75,7 +75,7 @@ export default [
         component: Articles,
         name: 'articles',
         meta: {
-            guard: Constants.GUARD_AUTH
+            guard: CONSTANTS.ROUTE.GUARD_AUTH
         }
     },
     {
@@ -83,7 +83,7 @@ export default [
         component: AddArticle,
         name: 'addArticle',
         meta: {
-            guard: Constants.GUARD_AUTH
+            guard: CONSTANTS.ROUTE.GUARD_AUTH
         }
     },
     {
@@ -91,7 +91,7 @@ export default [
         component: EditArticle,
         name: 'editArticle',
         meta: {
-            guard: Constants.GUARD_AUTH
+            guard: CONSTANTS.ROUTE.GUARD_AUTH
         }
     },
     {
@@ -99,8 +99,8 @@ export default [
         component: Roles,
         name: 'roles',
         meta: {
-            guard: Constants.GUARD_AUTH,
-            requiredRoles: [Constants.ROLE_ADMIN]
+            guard: CONSTANTS.ROUTE.GUARD_AUTH,
+            requiredRoles: [CONSTANTS.ROUTE.ROLE_ADMIN]
         }
     },
     {

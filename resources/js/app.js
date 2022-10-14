@@ -12,6 +12,5 @@ store.dispatch('getUser').then(()=>{
     createApp(App)
         .use(router)
         .use(store)
-        .use()
         .mount('#app');
 });
